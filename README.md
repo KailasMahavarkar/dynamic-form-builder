@@ -32,6 +32,7 @@ This is a simple dynamic form builder that allows you to create forms with diffe
         ├── css/global.css
         └── src
             └── [component-name]/
+                ├── __tests__/ (unit tests for component)
                 ├── [component-name].cva.tsx (for class variance authority styles)
                 ├── [component-name].types.ts (type definations for component)
                 ├── [component-name].tsx (component)
