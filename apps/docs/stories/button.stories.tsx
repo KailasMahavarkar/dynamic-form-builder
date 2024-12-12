@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Button from "@repo/ui/button"; // Adjust the import path based on your actual repo structure
+import Button from "@repo/ui/button"; 
 import { MapPin } from "lucide-react";
 
 const meta: Meta<typeof Button> = {

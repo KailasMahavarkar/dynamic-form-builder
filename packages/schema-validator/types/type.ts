@@ -1,33 +1,41 @@
-type TextFieldType = {
+// base type for field
+type BaseFieldType = {
     id: string;
+    type: string;
+    label: string;
+    key: string;
+    validation?: ValidatorConfig;
+};
+
+// for text field (input type text)
+type TextFieldType = BaseFieldType & {
     type: 'text';
-    label: string;
-    key: string;
     pattern?: string;
-    validation?: ValidatorConfig;
 };
 
-type DropDownFieldType = {
-    id: string;
+// for dropdown field
+type DropDownFieldType = BaseFieldType & {
     type: 'select';
-    label: string;
-    key: string;
     children: { value: string; label: string }[];
-    validation?: ValidatorConfig;
 };
 
-type RadioFieldType = {
-    id: string;
+// for radio field
+type RadioFieldType = BaseFieldType & {
     type: 'radio';
-    label: string;
-    key: string;
     children: { value: string; label: string }[];
     multiple: boolean;
-    validation?: ValidatorConfig;
 };
 
-export type FieldConfig = TextFieldType | DropDownFieldType | RadioFieldType;
+// for select field
+type SelectFieldType = BaseFieldType & {
+    type: 'select';
+    children: { value: string; label: string }[];
+}
 
+// unified type for all field types
+export type FieldConfig = TextFieldType | DropDownFieldType | RadioFieldType | SelectFieldType;
+
+// type for validation
 export type ValidatorConfig = {
     required?: boolean;
     minLength?: number;

@@ -5,8 +5,15 @@
 		"**/*.css"
 	],
 	"license": "MIT",
+	"files": [
+		"dist",
+		"css/global.css"
+	],
 	"exports": {
-		"./styles": "./css/output.css",
+		"./styles": {
+			"import": "./css/global.css",
+            "require": "./css/global.css"
+		},
 		"./button": {
 			"types": "./dist/button",
 			"import": "./dist/button/button.mjs",
@@ -21,15 +28,30 @@
 			"types": "./dist/select",
 			"import": "./dist/select/select.mjs",
 			"require": "./dist/select/select.js"
-		}
+		},
+		"./codeblock": {
+			"types": "./dist/codeblock",
+			"import": "./dist/codeblock/codeblock.mjs",
+			"require": "./dist/codeblock/codeblock.js"
+		},
+        "./label": {
+            "types": "./dist/label",
+            "import": "./dist/label/label.mjs",
+            "require": "./dist/label/label.js"
+        },
+        "./radio": {
+            "types": "./dist/radio",
+            "import": "./dist/radio/radio.mjs",
+            "require": "./dist/radio/radio.js"
+        }
 	},
 	"scripts": {
 		"build": "tsup",
 		"dev": "tsup --watch",
 		"lint": "eslint . --max-warnings 0",
 		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-		"tailwind:build": "tailwindcss -i ./src/styles.css -o ./css/output.css",
-		"tailwind:watch": "tailwindcss -i ./src/styles.css -o ./css/output.css --watch"
+		"tailwind:build": "tailwindcss -i ./src/styles.css -o ./css/global.css",
+		"tailwind:watch": "tailwindcss -i ./src/styles.css -o ./css/global.css --watch"
 	},
 	"devDependencies": {
 		"@repo/eslint-config": "workspace:*",
@@ -55,8 +77,10 @@
 		"vitest": "^2.1.1"
 	},
 	"dependencies": {
+		"@uiw/react-textarea-code-editor": "^3.1.0",
 		"class-variance-authority": "^0.7.0",
 		"classnames": "^2.5.1",
+		"jsonlint-mod": "^1.7.6",
 		"lucide-react": "^0.441.0",
 		"react": "^18.2.0",
 		"tailwind-merge": "^2.5.2"

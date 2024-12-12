@@ -16,6 +16,7 @@ const Button: React.FC<ButtonProps> = ({
     disabled = false,
     icon = React.Fragment,
     dataTestId = '',
+    ...otherProps
 }) => {
 
     const dti = makeDTI("button", dataTestId);
@@ -35,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
     const Icon = icon;
 
     return (
-        <button className={classes} disabled={loading || disabled} data-test-id={dti()}>
+        <button className={classes} disabled={loading || disabled} data-test-id={dti()} {...otherProps}>
             {
                 icon !== React.Fragment && <Icon data-test-id={dti("icon-left")} className="mr-[4px]" size={20} />
             }

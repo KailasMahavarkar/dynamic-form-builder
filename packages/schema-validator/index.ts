@@ -1,61 +1,47 @@
-import { IFormSchema } from './types/type';
-import {
-    isLengthValid,
-    patternValidator,
-} from './utils/index';
+import { IFormSchema } from "./types/type";
 
-function validateSchema(schema: IFormSchema, data: Record<string, any>) {
-    const errors: { message: string; field: string; }[] = [];
+function validateSchema(schema: IFormSchema, data: Record<string, unknown>) {
+    const errors: { message: string; field: string }[] = [];
 
     schema.fields.forEach((field) => {
-        const value = data[field.key];
-        const { validation } = field;
+        const value = data[field.key] || ''
 
-        if (!validation) return;
-
-        // Required validation
-        if (validation.required && (value === undefined || value === "")) {
-            errors.push({
-                message: `${field.label} is required.`,
-                field: field.key,
-            });
+        // required field validation
+        if (field.validation?.required && (value === undefined || value === null || value === '')) {
+            errors.push({ message: 'Field is required', field: field.key });
+            return;
         }
 
-        // Text field length validation
-        if (field.type === "text") {
-            if (
-                validation.minLength &&
-                !isLengthValid(value, validation.minLength, validation.maxLength ?? Infinity)
-            ) {
-                errors.push({
-                    message: `${field.label} must be between ${validation.minLength} and ${validation.maxLength} characters.`,
-                    field: field.key,
-                });
+        // length validation
+        if (field.validation?.minLength || field.validation?.maxLength) {
+            const minLength = field.validation.minLength || 0;
+            const maxLength = field.validation.maxLength || Infinity;
+
+            const stringValue = String(value || '');
+            if (!isLengthValid(stringValue, minLength, maxLength)) {
+                if (stringValue.length <= minLength) {
+                    errors.push({ message: 'Field is too short', field: field.key });
+                } else if (stringValue.length >= maxLength) {
+                    errors.push({ message: 'Field is too long', field: field.key });
+                }
             }
         }
 
-        // Select field validation
-        if (field.type === "select") {
-            const validOptions = field.children?.map((child) => child.value);
-            if (value && !validOptions?.includes(value)) {
-                errors.push({
-                    message: `${field.label} is invalid.`,
-                    field: field.key,
-                });
+        // pattern validation
+        if (field.validation?.pattern) {
+            const pattern = new RegExp(field.validation.pattern);
+            if (!pattern.test(String(value || ''))) {
+                errors.push({ message: 'Field does not match pattern', field: field.key });
             }
-        }
-
-        // Pattern validation (for text fields with regex)
-        if (validation.pattern && !patternValidator(value, validation.pattern)) {
-            errors.push({
-                message: `${field.label} is invalid.`,
-                field: field.key,
-            });
         }
     });
 
     return errors;
 }
 
-export { validateSchema }
-export type { IFormSchema, FieldConfig, ValidatorConfig } from './types/type'
+function isLengthValid(value: string, minLength: number, maxLength: number): boolean {
+    return value.length >= minLength && value.length <= maxLength;
+}
+
+export * from './types/type';
+export { validateSchema };
