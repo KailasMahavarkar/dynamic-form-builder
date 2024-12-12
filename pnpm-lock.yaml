@@ -157,6 +157,9 @@ importers:
       vite:
         specifier: ^5.1.4
         version: 5.2.11(@types/node@22.5.5)(sass@1.82.0)
+      vitest:
+        specifier: ^2.1.1
+        version: 2.1.1(@types/node@22.5.5)(jsdom@25.0.0)(sass@1.82.0)
 
   packages/config-tailwind:
     devDependencies:
@@ -185,15 +188,7 @@ importers:
         specifier: ^0.8.0
         version: 0.8.0(eslint@9.16.0(jiti@1.21.6))(typescript@5.6.3)
 
-  packages/schema-validator:
-    dependencies:
-      zod:
-        specifier: ^3.24.1
-        version: 3.24.1
-    devDependencies:
-      vitest:
-        specifier: ^2.1.1
-        version: 2.1.1(@types/node@22.5.5)(jsdom@25.0.0)(sass@1.82.0)
+  packages/schema-validator: {}
 
   packages/typescript-config: {}
 
@@ -5788,9 +5783,6 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
-
-  zod@3.24.1:
-    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -12130,7 +12122,5 @@ snapshots:
   yn@3.1.1: {}
 
   yocto-queue@0.1.0: {}
-
-  zod@3.24.1: {}
 
   zwitch@2.0.4: {}
