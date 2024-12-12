@@ -2,7 +2,7 @@
 
 This is a simple dynamic form builder that allows you to create forms with different types of fields. The form builder is built using React and Typescript and Uses Tailwind CSS for styling.
 
-## Project Structure 
+## Project Structure
 
 ```
 .
@@ -46,13 +46,13 @@ This is a simple dynamic form builder that allows you to create forms with diffe
 git clone https://github.com/KailasMahavarkar/form-builder.git
 ```
 
-2. Install the dependencies
+2. Open Bash Terminal or Git Bash and navigate to the project directory
 
 ```bash
-npm install
+./easy-resolve.bash
 ```
 
-3. Start the development server
+3. Start the development server of form-builder
 
 ```bash
 npm run dev
@@ -60,5 +60,21 @@ npm run dev
 
 4. Open the browser and navigate to `http://localhost:5173`
 
---------
 
+## Additonal Commands
+5. you can run the storybook to see the individual components
+
+```bash
+npm run storybook
+```
+
+6. Open the browser and navigate to `http://localhost:6006`
+
+
+7. If you Modify UI components, you need to run tailwind watcher to update the styles
+
+```bash
+npm run ui:tailwind:watch
+```
+
+---

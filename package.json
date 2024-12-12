@@ -4,6 +4,7 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev --parallel",
 		"ui:tailwind:watch": "cd packages/ui && npm run tailwind:watch",
+		"storybook": "cd apps/docs && npm run dev",
 		"builder:dev": "cd apps/builder && npm run dev",
 		"lint": "turbo run lint",
 		"clean": "turbo run clean && rm -rf node_modules",
